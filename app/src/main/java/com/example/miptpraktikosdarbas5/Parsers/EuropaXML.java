@@ -1,5 +1,7 @@
 package com.example.miptpraktikosdarbas5.Parsers;
 
+import android.util.Log;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -14,6 +16,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class EuropaXML {
     public static String getCurrencyRates(InputStream stream) throws IOException {
+        Log.d("EuropaXML", "getCurrencyRates Method called!");
+
         StringBuilder result = new StringBuilder();
         try {
             DocumentBuilderFactory xmlFactory = DocumentBuilderFactory.newInstance();

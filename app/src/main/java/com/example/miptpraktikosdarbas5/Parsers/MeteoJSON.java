@@ -1,5 +1,7 @@
 package com.example.miptpraktikosdarbas5.Parsers;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,6 +13,8 @@ import java.io.InputStreamReader;
 
 public class MeteoJSON {
     public static String getWeatherForecast(InputStream stream) throws IOException {
+        Log.d("MeteoJSON", "getWeatherForecast Method called!");
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
         String line = "";
         StringBuilder data = new StringBuilder();
