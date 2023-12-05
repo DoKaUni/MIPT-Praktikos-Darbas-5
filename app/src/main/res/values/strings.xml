@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">MIPT Praktikos Darbas 5</string>
     <string name="currency_filter_hint">Enter currency code</string>
+    <string-array name="api_options">
+        <item>Europa exchange</item>
+        <item>FloatRates exchange</item>
+        <item>Meteo forecast</item>
+    </string-array>
 </resources>

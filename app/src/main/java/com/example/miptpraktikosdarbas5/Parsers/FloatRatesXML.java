@@ -26,7 +26,7 @@ public class FloatRatesXML {
                 String currencyName = itemNode.getElementsByTagName("targetName").item(0).getFirstChild().getNodeValue();
                 String currencyCode = itemNode.getElementsByTagName("targetCurrency").item(0).getFirstChild().getNodeValue();
                 String rate = itemNode.getElementsByTagName("exchangeRate").item(0).getFirstChild().getNodeValue();
-                result.append(String.format("Currency name: %s, code %s, rate %s \n", currencyName, currencyCode, rate));
+                result.append(String.format("Currency name: %s, code: %s, rate: %s\n", currencyName, currencyCode, rate));
             }
         } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();

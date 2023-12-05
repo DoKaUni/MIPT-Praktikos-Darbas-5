@@ -1,5 +1,6 @@
 package com.example.miptpraktikosdarbas5.Parsers;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,7 +14,7 @@ public class MeteoJSON {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
         String line = "";
         StringBuilder data = new StringBuilder();
-        while(line != null){
+        while (line != null) {
             line = bufferedReader.readLine();
             data.append(line);
         }
@@ -27,16 +28,16 @@ public class MeteoJSON {
             JSONObject coordinatesNodes = placeNode.getJSONObject("coordinates");
             String latitude = coordinatesNodes.getString("latitude");
             String longitude = coordinatesNodes.getString("longitude");
-            result.append(String.format("location name: %s,\n latitude: %s,\n longitude: %s", placeName, latitude, longitude));
+            result.append(String.format("Location name: %s, latitude: %s, longitude: %s \n", placeName, latitude, longitude));
 
-            JSONObject timeStampNodes = jData.getJSONObject("forecastTimestamps");
-            for(int i = 0; i < 24; i++) {
-                JSONObject currentTimeStamp = timeStampNodes.getJSONObject(String.valueOf(i));
+            JSONArray timeStampArray = jData.getJSONArray("forecastTimestamps");
+            for (int i = 0; i <= 24; i++) {
+                JSONObject currentTimeStamp = timeStampArray.getJSONObject(i);
                 String forecastTime = currentTimeStamp.getString("forecastTimeUtc");
                 String airTemperature = currentTimeStamp.getString("airTemperature");
                 String feelTemperature = currentTimeStamp.getString("feelsLikeTemperature");
                 String conditionCode = currentTimeStamp.getString("conditionCode");
-                result.append(String.format("forecast time: %s, condition %s, temperature %s, feels like %s", forecastTime, conditionCode, airTemperature, feelTemperature));
+                result.append(String.format("Forecast time: %s, condition: %s, temperature: %s, feels like: %s\n", forecastTime, conditionCode, airTemperature, feelTemperature));
             }
 
         } catch (JSONException e) {

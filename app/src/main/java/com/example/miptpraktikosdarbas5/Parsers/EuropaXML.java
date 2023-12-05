@@ -20,12 +20,14 @@ public class EuropaXML {
             DocumentBuilder xmlBuilder = xmlFactory.newDocumentBuilder();
             Document doc = xmlBuilder.parse(stream);
 
-            NodeList itemNodes = doc.getElementsByTagName("Cube");
-            for (int i = 0; i < itemNodes.getLength(); ++i) {
-                Element itemNode = (Element) itemNodes.item(i);
-                String currencyCode = itemNode.getElementsByTagName("currency").item(0).getFirstChild().getNodeValue();
-                String rate = itemNode.getElementsByTagName("rate").item(0).getFirstChild().getNodeValue();
-                result.append(String.format("Currency code: %s, rate %s \n", currencyCode, rate));
+            Element rootCube = (Element) doc.getElementsByTagName("Cube").item(0);
+
+            NodeList cubeNodes = rootCube.getElementsByTagName("Cube");
+            for (int i = 1; i < cubeNodes.getLength(); ++i) {
+                Element cubeNode = (Element) cubeNodes.item(i);
+                String currencyCode = cubeNode.getAttribute("currency");
+                String rate = cubeNode.getAttribute("rate");
+                result.append(String.format("Currency code: %s, rate: %s\n", currencyCode, rate));
             }
         } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();
