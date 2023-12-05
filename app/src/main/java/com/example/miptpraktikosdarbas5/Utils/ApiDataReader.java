@@ -10,6 +10,10 @@ import static com.example.miptpraktikosdarbas5.Utils.Constants.EUROPA_API_URL;
 import static com.example.miptpraktikosdarbas5.Utils.Constants.FLOATRATES_API_URL;
 import static com.example.miptpraktikosdarbas5.Utils.Constants.METEO_API_URL;
 
+import com.example.miptpraktikosdarbas5.Parsers.EuropaXML;
+import com.example.miptpraktikosdarbas5.Parsers.FloatRatesXML;
+import com.example.miptpraktikosdarbas5.Parsers.MeteoJSON;
+
 public class ApiDataReader {
     public static String getValuesFromApi(String apiCode) throws IOException {
         InputStream apiContentStream = null;
@@ -18,15 +22,15 @@ public class ApiDataReader {
             switch (apiCode) {
                 case EUROPA_API_URL:
                     apiContentStream = downloadUrlContent(EUROPA_API_URL);
-                    //result = <!-- TODO: Add Europa Parser Call when the parser is implemented.
+                    result = EuropaXML.getCurrencyRates(apiContentStream);
                     break;
                 case FLOATRATES_API_URL:
                     apiContentStream = downloadUrlContent(FLOATRATES_API_URL);
-                    //result = <!-- TODO: Add FloatRates Parser Call when the parser is implemented.
+                    result = FloatRatesXML.getCurrencyRates(apiContentStream);
                     break;
                 case METEO_API_URL:
                     apiContentStream = downloadUrlContent(METEO_API_URL);
-                    //result = <!-- TODO: Add Meteo Parser Call when the parser is implemented.
+                    result = MeteoJSON.getWeatherForecast(apiContentStream);
                     break;
                 default:
             }
