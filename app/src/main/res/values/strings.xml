@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MIPT Praktikos Darbas 5</string>
+    <string name="currency_filter_hint">Enter currency code</string>
+</resources>
